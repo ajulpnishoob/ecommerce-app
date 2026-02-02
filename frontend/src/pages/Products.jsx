@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import { Link } from "react-router-dom";
+
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -14,6 +16,12 @@ export default function Products() {
   return (
     <div className="container mt-4">
       <h2 className="mb-4">Products</h2>
+
+
+<Link to={`/Products/${products._id}`} className="text-decoration-none">
+  <h6>{products.title}</h6>
+</Link>
+
 
       <div className="row g-4">
         {products.map(p => (

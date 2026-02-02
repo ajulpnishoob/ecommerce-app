@@ -2,19 +2,16 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
-export default function Admin() {
-  const { token, role } = useContext(AuthContext);
-
+export default function AddProduct() {
+  const { token } = useContext(AuthContext);
   const [product, setProduct] = useState({
     title: "",
     price: "",
     description: "",
-    thumbnail: "",
+    thumbnail: ""
   });
 
-  if (role !== "admin") return <h3>Access Denied</h3>;
-
-  const addProduct = async () => {
+  const submit = async () => {
     await axios.post(
       "http://localhost:5000/api/products",
       product,
@@ -25,7 +22,7 @@ export default function Admin() {
 
   return (
     <div className="container mt-4">
-      <h2>Admin Panel</h2>
+      <h3>Add Product</h3>
 
       <input className="form-control mb-2" placeholder="Title"
         onChange={e => setProduct({ ...product, title: e.target.value })} />
@@ -36,11 +33,11 @@ export default function Admin() {
       <textarea className="form-control mb-2" placeholder="Description"
         onChange={e => setProduct({ ...product, description: e.target.value })} />
 
-      <input className="form-control mb-3" placeholder="Thumbnail URL"
+      <input className="form-control mb-3" placeholder="Image URL"
         onChange={e => setProduct({ ...product, thumbnail: e.target.value })} />
 
-      <button className="btn btn-success" onClick={addProduct}>
-        Add Product
+      <button className="btn btn-success" onClick={submit}>
+        Save Product
       </button>
     </div>
   );

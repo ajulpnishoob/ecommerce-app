@@ -5,6 +5,10 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Orders from "./pages/Orders";
+import AddProduct from "./pages/AddProduct";
 
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -21,6 +25,14 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/add-product" element={<AddProduct />} />
+  
+
             
 
           </Routes>

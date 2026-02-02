@@ -34,11 +34,13 @@ export default function ProductDetails() {
           <p>⭐ {product.rating}</p>
 
           <button
-            className="btn btn-primary"
-            onClick={() => addToCart(product)}
-          >
-            Add to Cart
-          </button>
+          className="btn btn-primary mt-auto"
+          disabled={product.stock === 0}
+          onClick={() => addToCart(product)}
+        >
+          {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+        </button>
+
         </div>
       </div>
     </div>

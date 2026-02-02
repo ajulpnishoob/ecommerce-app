@@ -1,10 +1,20 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useContext(CartContext);
+  const { cart, addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const inCart = cart.find(p => p._id === product._id);
+
+  const handleClick = () => {
+    if (inCart) {
+      navigate("/cart"); // ✅ Go to cart
+    } else {
+      addToCart(product); // ✅ Add to cart
+    }
+  };
 
   return (
     <div className="card h-100 shadow-sm">
@@ -16,26 +26,14 @@ export default function ProductCard({ product }) {
       />
 
       <div className="card-body d-flex flex-column">
-        <h6 className="card-title">{product.title}</h6>
-        <p className="text-muted small">{product.category}</p>
-
-        <p className="fw-bold mb-1">₹{product.price}</p>
-        <p className="small">⭐ {product.rating}</p>
+        <h6>{product.title}</h6>
+        <p className="fw-bold">₹{product.price}</p>
 
         <button
-          className="btn btn-primary mt-auto"
-          disabled={product.stock === 0}
-          onClick={() => addToCart(product)}
+          className={`btn ${inCart ? "btn-success" : "btn-primary"} mt-auto`}
+          onClick={handleClick}
         >
-
-        <Link
-        to={`/product/${product._id}`}
-          className="btn btn-outline-secondary btn-sm"
-        >
-                 View
-        </Link>
-
-          {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+          {inCart ? "Go to Cart" : "Add to Cart"}
         </button>
       </div>
     </div>
