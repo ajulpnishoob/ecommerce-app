@@ -27,13 +27,16 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/add-product" element={<AddProduct />} />
-  
+
+            <Route path="/" element={<Login />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
 
             
+
+
+  
 
           </Routes>
         </BrowserRouter>

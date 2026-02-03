@@ -27,8 +27,8 @@ export default function Navbar() {
             </button>
           </>
         ) : (
-          <Link className="btn btn-outline-light" to="/">
-            Login / Register
+          <Link className="btn btn-outline-light" to="/login">
+            Login 
           </Link>
         )}
       </div>

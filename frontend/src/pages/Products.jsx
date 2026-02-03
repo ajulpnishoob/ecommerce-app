@@ -18,11 +18,6 @@ export default function Products() {
       <h2 className="mb-4">Products</h2>
 
 
-<Link to={`/Products/${products._id}`} className="text-decoration-none">
-  <h6>{products.title}</h6>
-</Link>
-
-
       <div className="row g-4">
         {products.map(p => (
           <div key={p._id} className="col-sm-6 col-md-4 col-lg-3">

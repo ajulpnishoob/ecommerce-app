@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,24 +16,38 @@ export default function Login() {
     );
 
     login(res.data);
-    navigate("/products"); // ✅ redirect
+    navigate("/products"); // ✅ redirect after login
   };
 
   return (
-    <div className="card p-3">
-      <h5>Login</h5>
+    <div className="container mt-5" style={{ maxWidth: "400px" }}>
+      <h3 className="mb-3">Login</h3>
 
-      <input className="form-control mb-2"
+      <input
+        className="form-control mb-2"
         placeholder="Email"
-        onChange={e => setEmail(e.target.value)} />
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-      <input type="password" className="form-control mb-2"
+      <input
+        type="password"
+        className="form-control mb-3"
         placeholder="Password"
-        onChange={e => setPassword(e.target.value)} />
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-      <button className="btn btn-primary" onClick={handleLogin}>
+      <button
+        className="btn btn-primary w-100 mb-3"
+        onClick={handleLogin}
+      >
         Login
       </button>
+
+      {/* 🔗 SIGN UP LINK */}
+      <p className="text-center mb-0">
+        Don&apos;t have an account?{" "}
+        <Link to="/register">Sign up</Link>
+      </p>
     </div>
   );
 }

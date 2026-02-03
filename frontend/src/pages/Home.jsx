@@ -12,7 +12,7 @@ export default function Home() {
         Welcome {user ? user.name : "to E-Shop"}
       </h2>
 
-      {!user && (
+      {/* {!user && (
         <div className="row">
           <div className="col-md-6">
             <Login />
@@ -21,7 +21,7 @@ export default function Home() {
             <Register />
           </div>
         </div>
-      )}
+      )} */}
 
       {user && (
         <p className="alert alert-success">

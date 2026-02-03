@@ -1,15 +1,23 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { cart, increaseQty, decreaseQty, removeFromCart } =
     useContext(CartContext);
 
+  const navigate = useNavigate();
+
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
   );
+
+  const checkout = () => {
+    navigate("/orders", {
+      state: { cart, total },
+    });
+  };
 
   return (
     <div className="container mt-4">
@@ -17,15 +25,13 @@ export default function Cart() {
 
       {cart.length === 0 && <p>Your cart is empty</p>}
 
-      {cart.map(item => (
+      {cart.map((item) => (
         <div
           key={item._id}
-          className="card mb-3 p-3 d-flex flex-row align-items-center justify-content-between"
+          className="card mb-3 p-3 d-flex flex-row justify-content-between align-items-center"
         >
           <div>
-            <Link to={`/product/${item._id}`}>
-              <strong>{item.title}</strong>
-            </Link>
+            <strong>{item.title}</strong>
             <p className="mb-1">₹{item.price}</p>
 
             <div className="d-flex align-items-center gap-2">
@@ -57,7 +63,14 @@ export default function Cart() {
       ))}
 
       {cart.length > 0 && (
-        <h4 className="mt-3">Total: ₹{total.toFixed(2)}</h4>
+        <>
+          <h4 className="mt-3">Total: ₹{total.toFixed(2)}</h4>
+
+          {/* ✅ COMMON CHECKOUT BUTTON */}
+          <button className="btn btn-success mt-3" onClick={checkout}>
+            Checkout
+          </button>
+        </>
       )}
     </div>
   );
