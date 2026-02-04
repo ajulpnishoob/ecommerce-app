@@ -69,7 +69,7 @@ export default function ProductDetails() {
               className="btn btn-warning"
               onClick={() => {
                 addToCart(product);
-                navigate("/cart");
+                navigate("/orders");
               }}
             >
               Order Now

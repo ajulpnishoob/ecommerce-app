@@ -10,7 +10,7 @@ export default function Orders() {
       <div className="container mt-5">
         <h4>No order found</h4>
         <button className="btn btn-primary" onClick={() => navigate("/products")}>
-          Go to Products
+          Continue Shopping
         </button>
       </div>
     );
