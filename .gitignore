@@ -1,0 +1,16 @@
+# Environment files (anywhere)
+.env
+.env.*
+
+# Node
+node_modules/
+
+# PHP
+/vendor/
+
+# Build outputs
+/dist/
+/build/
+
+# Logs
+*.log
